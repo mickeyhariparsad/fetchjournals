@@ -25,9 +25,11 @@ def fetch_journals(journal_dir, start_date_str, end_date_str):
         filepath = os.path.join(journal_dir, filename)
 
         if os.path.exists(filepath):
+            date_header = current_date.strftime("## %Y-%m-%d\n")
+            all_content.append(date_header)
             with open(filepath, 'r', encoding='utf-8') as f:
                 all_content.append(f.read())
-                all_content.append("\n\n")
+            all_content.append("\n\n")
 
         current_date += timedelta(days=1)
 
